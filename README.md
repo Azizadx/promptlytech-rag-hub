@@ -18,3 +18,10 @@ The mission at PromptlyTech is to make AI-powered solutions more accessible, eff
 In the dynamic world of artificial intelligence, the quality of prompts is critical to the effectiveness of LLMS. Prompt engineering, 
 the craft of creating queries or statements to guide llms, has become an essential skill. 
 In this repository addresses the challenges of prompt engineering, automation, and optimization for more effective use of llms.
+
+
+## Project Design
+The Redash chat add-on is structured around four essential components, each residing in its dedicated folder within the system:
+- [frontend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/frontend/promptlytech): Develop the user-facing interface of the PromptlyTech.
+- [backend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/backend): The brige between the frontend and backend.
+- [engine Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/engine): The project backbone for this repo.
