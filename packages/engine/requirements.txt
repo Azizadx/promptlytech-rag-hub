@@ -29,3 +29,4 @@ datasets
 ipywidgets
 openai
 numpy
+python-dotenv
