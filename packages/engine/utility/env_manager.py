@@ -1,7 +1,7 @@
 import os
 import sys
-from dotenv import load_dotenv
-load_dotenv(".env")
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 
 class OPENAI_KEYS:

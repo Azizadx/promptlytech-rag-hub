@@ -23,7 +23,7 @@ def evaluate(prompt: str, user_message: str, context: str, use_test_data: bool =
     API_RESPONSE = get_completion(
         [
             {
-                "role": "system", 
+                "role": "system",
                 "content": prompt.replace("{Context}", context).replace("{Question}", user_message)
             }
         ],
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     prompt_message = file_reader("prompts/generic-evaluation-prompt.txt")
     context = str(context_message)
     prompt = str(prompt_message)
-    
+
     user_message = str(input("question: "))
-    
+
     print(evaluate(prompt, user_message, context))
