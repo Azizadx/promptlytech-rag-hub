@@ -162,3 +162,8 @@ cython_debug/
 .virtual_documents/
 .vscode/
 .virtual_documents/
+
+../../../.DS_Store
+../../.DS_Store
+../../engine/research/T1.ipynb
+../.DS_Store
