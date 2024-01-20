@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from openai import OpenAI
 from math import exp
 import numpy as np
@@ -37,17 +38,18 @@ def evaluate(prompt: str, user_message: str, context: str, use_test_data: bool =
     for i, logprob in enumerate(API_RESPONSE.choices[0].logprobs.content[0].top_logprobs, start=1):
         output = f'\nhas_sufficient_context_for_answer: {system_msg}, \nlogprobs: {logprob.logprob}, \naccuracy: {np.round(np.exp(logprob.logprob)*100,2)}%\n'
         print(output)
-        if system_msg == 'true' and np.round(np.exp(logprob.logprob)*100,2) >= 95.00:
+        if system_msg == 'true' and np.round(np.exp(logprob.logprob)*100, 2) >= 95.00:
             classification = 'true'
-        elif system_msg == 'false' and np.round(np.exp(logprob.logprob)*100,2) >= 95.00:
+        elif system_msg == 'false' and np.round(np.exp(logprob.logprob)*100, 2) >= 95.00:
             classification = 'false'
         else:
             classification = 'false'
     return classification
 
+
 if __name__ == "__main__":
-    context_message = file_reader("prompts/context.txt")
-    prompt_message = file_reader("prompts/generic-evaluation-prompt.txt")
+    context_message = file_reader("../prompts/context.txt")
+    prompt_message = file_reader("../prompts/generic-evaluation-prompt.txt")
     context = str(context_message)
     prompt = str(prompt_message)
 
