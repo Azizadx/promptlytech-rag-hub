@@ -1,19 +1,25 @@
-import json
 import os
-from openai import OpenAI
-from math import exp
-import numpy as np
-from env_manager import get_env_manager
+import json
 import sys
-sys.path.append('../utility')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from utility.env_manager import get_env_manager
+from dotenv import load_dotenv
+import numpy as np
+from math import exp
+from openai import OpenAI
+import json
 
 
-client = OpenAI(api_key=get_env_manager['openai_keys']['OPENAI_API_KEY'])
+
+load_dotenv()
+env_manager = get_env_manager()
+
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 
 def get_completion(
     messages: list[dict[str, str]],
-    model: str = get_env_manager['vectordb_keys']['VECTORDB_MODEL'],
+    model: str = os.getenv('VECTORDB_MODEL'),
     max_tokens=500,
     temperature=0,
     stop=None,
@@ -72,7 +78,7 @@ def generate_test_data(prompt: str, context: str, num_test_output: str) -> str:
                 "content": prompt.replace("{context}", context).replace("{num_test_output}", num_test_output)
             }
         ],
-        model=get_env_manager['vectordb_keys']['VECTORDB_MODEL'],
+        model=os.getenv('VECTORDB_MODEL'),
         logprobs=True,
         top_logprobs=1,
     )
@@ -82,15 +88,16 @@ def generate_test_data(prompt: str, context: str, num_test_output: str) -> str:
 
 
 def main(num_test_output: str):
-    context_message = file_reader("prompts/context.txt")
-    prompt_message = file_reader("prompts/data-generation-prompt.txt")
+    # add params that check also accpet the upload file from the and number of test
+    context_message = file_reader("../prompts/context.txt")
+    prompt_message = file_reader("../prompts/data-generation-prompt.txt")
     context = str(context_message)
     prompt = str(prompt_message)
     test_data = generate_test_data(prompt, context, num_test_output)
-
+    ## when the generate is done save in on db in cloud
     def save_json(test_data) -> None:
         # Specify the file path
-        file_path = "test-dataset/test-data.json"
+        file_path = "../../dataset/test-data.json"
         json_object = json.loads(test_data)
         with open(file_path, 'w') as json_file:
             json.dump(json_object, json_file, indent=4)
