@@ -26,7 +26,3 @@ ragas
 weaviate-client
 langchain
 datasets
-ipywidgets
-openai
-numpy
-python-dotenv

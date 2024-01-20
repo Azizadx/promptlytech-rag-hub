@@ -8,6 +8,7 @@ from math import exp
 import numpy as np
 import weaviate
 from langchain.vectorstores import Weaviate
+from langchain.vectorstores import Weaviate
 from utility.env_manager import get_env_manager
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -83,7 +84,7 @@ def vectorize_data(texts, meta):
         print(f"An error occurred during vectorization: {e}")
         return None
 
-def get_context_from_rag(user_objective, env_manager):
+def retrieve_context(user_objective, env_manager):
     try:
         # Load data and vectorize
         texts, meta = load_data()
@@ -110,7 +111,7 @@ if __name__ == "__main__":
     try:
         # Get user objective and print context
         user_objective = str(input("Objective: "))
-        context = get_context_from_rag(user_objective, env_manager)
+        context = retrieve_context(user_objective, env_manager)
 
         if context is not None:
             print("Context:")
