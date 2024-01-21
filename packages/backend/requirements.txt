@@ -26,3 +26,14 @@ ragas
 weaviate-client
 langchain
 datasets
+flask
+google-cloud-bigquery
+openai
+tiktoken
+tenacity
+requests
+termcolor
+python-dotenv
+waitress
+gunicorn
+unstructured
