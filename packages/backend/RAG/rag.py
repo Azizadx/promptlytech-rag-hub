@@ -24,7 +24,7 @@ client = OpenAI(api_key=env_manager['openai_keys']['OPENAI_API_KEY'])
 def load_data():
     # Load  data
     try:
-        loader = DirectoryLoader('/Users/azizamed/Downloads/week6/promptlytech-rag-hub/packages/engine/src/prompts', glob="context.txt")
+        loader = DirectoryLoader('prompts', glob="context.txt")
         data = loader.load()
         # Split text into chunks
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=0)
