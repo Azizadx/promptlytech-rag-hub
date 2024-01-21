@@ -2,6 +2,7 @@ import os
 import json
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from script.save_to_json import save_json_to_file
 from openai import OpenAI
 from math import exp
 import numpy as np
@@ -13,7 +14,7 @@ env_manager = get_env_manager()
 client = OpenAI(api_key=env_manager['openai_keys']['OPENAI_API_KEY'])
 
 
-def evaluate(prompt: str, user_message: str, context: str, use_test_data: bool = False) -> str:
+def evaluate(prompt: str, user_message: str, context: str,) -> str:
     """Return the classification of the hallucination.
     @parameter prompt: the prompt to be completed.
     @parameter user_message: the user message to be classified.
@@ -36,23 +37,29 @@ def evaluate(prompt: str, user_message: str, context: str, use_test_data: bool =
     system_msg = str(API_RESPONSE.choices[0].message.content)
 
     for i, logprob in enumerate(API_RESPONSE.choices[0].logprobs.content[0].top_logprobs, start=1):
+        accuracy = np.round(np.exp(logprob.logprob)*100,2)
         output = f'\nhas_sufficient_context_for_answer: {system_msg}, \nlogprobs: {logprob.logprob}, \naccuracy: {np.round(np.exp(logprob.logprob)*100,2)}%\n'
-        print(output)
+        # print(output)
         if system_msg == 'true' and np.round(np.exp(logprob.logprob)*100, 2) >= 80.00:
             classification = 'true'
         elif system_msg == 'false' and np.round(np.exp(logprob.logprob)*100, 2) >= 80.00:
             classification = 'false'
         else:
             classification = 'false'
-    return classification
+        result = {'classification': classification, 'accuracy': f'{accuracy}%'}
+    return result
 
 
-if __name__ == "__main__":
-    context_message = file_reader("../prompts/context.txt")
-    prompt_message = file_reader("../prompts/generic-evaluation-prompt.txt")
-    context = str(context_message)
-    prompt = str(prompt_message)
 
-    user_message = str(input("question: "))
 
-    print(evaluate(prompt, user_message, context))
+
+# if __name__ == "__main__":
+#     context_message = file_reader("prompts/context.txt")
+#     prompt_message = file_reader("prompts/generic-evaluation-prompt.txt")
+#     context = str(context_message)
+#     prompt = str(prompt_message)
+
+#     user_message = str(input("question: "))
+#     data = evaluate(prompt, user_message, context)
+#     # print()
+#     save_json_to_file({'prompt':user_message,'response':data},file_path='prompt_generated/prompts.json')

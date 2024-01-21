@@ -3,6 +3,7 @@ import json
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from utility.env_manager import get_env_manager
+from RAG.rag import retrieve_context
 from dotenv import load_dotenv
 import numpy as np
 from math import exp
@@ -105,12 +106,13 @@ def main(num_test_output: str):
         print(f"JSON data has been saved to {file_path}")
 
     save_json(test_data)
+    return test_data
 
-    print("===========")
-    print("Test Data")
-    print("===========")
-    print(test_data)
+    # print("===========")
+    # print("Test Data")
+    # print("===========")
+    # print(test_data)
 
 
-if __name__ == "__main__":
-    main("5")  # n number of test data to generate
+# if __name__ == "__main__":
+#     main("5",)  # n number of test data to generate
