@@ -37,3 +37,4 @@ python-dotenv
 waitress
 gunicorn
 unstructured
+langchain_openai
