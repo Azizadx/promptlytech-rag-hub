@@ -9,12 +9,14 @@ from evaluation._data_generation import file_reader
 from evaluation._evaluation import evaluate
 from script.save_to_json import save_json_to_file
 from flask import Flask, request, jsonify, Blueprint
+from flask_cors import CORS
 
 # Load environment variables
 load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 # Initialize Flask app
 main_app = Blueprint('main', __name__)
+CORS(main, resources={r"/*": {"origins": "*"}})
 
 
 main_app.add_middleware(
