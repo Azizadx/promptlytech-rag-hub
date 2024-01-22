@@ -19,15 +19,6 @@ main_app = Blueprint('main', __name__)
 CORS(main_app, resources={r"/*": {"origins": "*"}})
 
 
-main_app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
 # Route for handling user messages
 @main_app.get('/')
 def home():
