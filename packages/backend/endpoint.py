@@ -26,11 +26,11 @@ def home():
 
 
 @main_app.post('/api/chatbot')
-def chatbot():
+async def chatbot():
     try:
         data = request.get_json()
         user_objective = data.get("objective", "")  # Adjust the key based on your actual data structure
-        result = run_qa_chain_with_context(user_objective)
+        result = await run_qa_chain_with_context(user_objective)
 
         if result is not None:
             return jsonify({"answer": result}), 200
@@ -46,13 +46,13 @@ def read_json_file(file_path):
         return json.load(json_file)
 
 @main_app.post('/api/generated')
-def generate_prompts():
+async def generate_prompts():
     try:
         # Assuming you're sending a JSON payload with 'num_test_output'
         data = request.get_json()
         num_test_output = data.get("num_test_output", 1)  # Default to 1 if not provided
         # Generate test data
-        test_data = main(num_test_output)
+        test_data = await main(num_test_output)
         file_path = "dataset/test-data.json"
         response = read_json_file(file_path)
 
@@ -62,14 +62,12 @@ def generate_prompts():
         # Return the "user" data as the response
         return jsonify(users_only[:num_test_output]), 200
 
-        # Return the generated data as the response
-        # return response, 200
 
     except Exception as e:
         return jsonify({"status": "error", "message": f"An unexpected error occurred: {e}"}), 500
 
 @main_app.post('/api/evaluate')
-def evaluate_prompt():
+async def evaluate_prompt():
     try:
         # Assuming the JSON payload has a 'user_message' key
         data = request.get_json()
@@ -82,7 +80,7 @@ def evaluate_prompt():
         prompt = str(prompt_message)
 
         # Evaluate and save to JSON file
-        response = evaluate(prompt, user_message, context)
+        response = await evaluate(prompt, user_message, context)
         save_json_to_file({'prompt': user_message, 'response': response})
 
         return jsonify({'prompt': user_message, 'response': response}), 200

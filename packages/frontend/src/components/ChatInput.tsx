@@ -19,6 +19,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Separator } from "./ui/separator";
+import axios from "axios";
 
 const formSchema = z.object({
   input: z.string().max(1000),
@@ -38,8 +39,15 @@ const ChatInput = (props: Props) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const inputCopy = values.input.trim();
     form.reset();
+    axios.post('https://promptly-qmv5.onrender.com/api/evaluate',{
+      'user_message': inputCopy
+    }).then(()=>{
+      router.push("/chat");
+    })
+    .catch((error)=>{
+     return console.error(error)
+    })
 
-    router.push("/chat");
   }
 
   return (
