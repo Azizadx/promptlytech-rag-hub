@@ -16,7 +16,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 # Initialize Flask app
 main_app = Blueprint('main', __name__)
-CORS(main, resources={r"/*": {"origins": "*"}})
+CORS(main_app, resources={r"/*": {"origins": "*"}})
 
 
 main_app.add_middleware(
