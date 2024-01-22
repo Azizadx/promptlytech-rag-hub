@@ -26,7 +26,7 @@ ragas
 weaviate-client
 langchain
 datasets
-flask
+flask[async]
 google-cloud-bigquery
 openai
 tiktoken
