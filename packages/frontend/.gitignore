@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
@@ -11,11 +12,6 @@
 # next.js
 /.next/
 /out/
- ../../../.DS_Store
-../../.DS_Store
-../../engine/research/T1.ipynb
-../.DS_Store
-./
 
 # production
 /build
