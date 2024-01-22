@@ -27,6 +27,5 @@ In this repository addresses the challenges of prompt engineering, automation, a
 
 ## Project Design
 The Redash chat add-on is structured around four essential components, each residing in its dedicated folder within the system:
-- [frontend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/frontend/promptlytech): Develop the user-facing interface of the PromptlyTech.
-- [backend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/backend): The brige between the frontend and backend.
-- [engine Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/engine): The project backbone for this repo.
+- [frontend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/frontend): Develop the user-facing interface of the PromptlyTech.
+- [backend Package](https://github.com/Azizadx/promptlytech-rag-hub/tree/main/packages/backend): The project backbone for this repo.
