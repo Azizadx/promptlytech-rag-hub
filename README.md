@@ -7,11 +7,7 @@
 
 
 # Overview
-
-Welcome to PromptlyTech's RAG Hub!
-The PromptlyTech RAG
-PromptlyTech RAG (Recision RAG) is your go-to repository for developing enterprise-level RAG (Prompt Tuning) systems. 
-This GitHub project aims to advance the field of prompt engineering, with a focus on Language Models (LLMs) such as GPT-3.5 and GPT-4. 
+PromptlyTech RAG (Precision RAG) is a comprehensive resource for building enterprise-scale RAG (Prompt Tuning) systems. This GitHub project aims to push the boundaries of prompt engineering, particularly for Language Models (LLMs) such as GPT-3.5 and GPT-4.
 
 The mission at PromptlyTech is to make AI-powered solutions more accessible, efficient, and effective for a variety of industries.
 
@@ -26,6 +22,7 @@ The mission at PromptlyTech is to make AI-powered solutions more accessible, eff
 In the dynamic world of artificial intelligence, the quality of prompts is critical to the effectiveness of LLMS. Prompt engineering, 
 the craft of creating queries or statements to guide llms, has become an essential skill. 
 In this repository addresses the challenges of prompt engineering, automation, and optimization for more effective use of llms.
+
 
 
 ## Project Design
