@@ -17,6 +17,15 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 main_app = Blueprint('main', __name__)
 
 
+main_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 # Route for handling user messages
 @main_app.get('/')
 def home():
